@@ -1,0 +1,32 @@
+
+Router>
+Router>en
+Router#conf
+Configuring from terminal, memory, or network [terminal]? 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int gig0/0
+Router(config-if)#ip add 192.168.1.1 255.255.255.0
+Router(config-if)#no shut
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#exit
+
+Router(config)#hostname DHCPRouter
+DHCPRouter(config)#ip dhcp pool CCNP
+DHCPRouter(dhcp-config)#network 192.168.1.0 255.255.255.0
+DHCPRouter(dhcp-config)#dns-server 192.168.1.50
+DHCPRouter(dhcp-config)#dns-server 192.168.1.51
+DHCPRouter(dhcp-config)#default-router 192.168.1.100
+DHCPRouter(dhcp-config)#ip dhcp ex
+DHCPRouter(dhcp-config)#ip dhcp excluded-address 192.168.1.100
+DHCPRouter(config)#ip dhcp excluded-address 192.168.1.51
+DHCPRouter(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.20
+DHCPRouter(config)#end
+DHCPRouter#
+%SYS-5-CONFIG_I: Configured from console by console
+
+
